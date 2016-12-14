@@ -49,7 +49,7 @@ io.on('connection', function(socket){
 });
 
 
-http.listen(3000, '192.168.0.8', function(error){
+http.listen(3000, function(error){
   if (error) {
     console.error(error);
   } else {
