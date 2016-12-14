@@ -1,0 +1,138 @@
+body {
+	font-family: Arial;
+	font-size: 14px;
+	box-sizing: border-box;
+	height: 100%;
+	background-color: rgb(246,243,238);
+}
+.joinChat {
+	width: 100%;
+	text-align: center;
+	font-size: 2em;
+	line-height: 1.5em;
+	margin-top: 20%;
+	color: rgb(115,34,54);
+}
+
+.joinChat input {
+	width: 30%;	
+	font-size: 1em;
+	padding-left: 0.5em;
+}
+
+.joinChat button {
+	display: block;
+	width: 10%;
+	line-height: 2em;
+	margin: 2% auto;
+	text-transform: uppercase;
+	font-size: 0.5em;
+	color: white;
+	font-style: bold;
+	border-style: none;
+	letter-spacing: 0.1em;
+	background-color: rgb(93,148,171);
+}
+
+.joinChat button:hover {
+	cursor: pointer;
+	-webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+.joinChat input::-webkit-input-placeholder {
+	color: gray;
+	text-transform: uppercase;	 
+}
+
+.container {
+	width: 90%;
+	margin: 0 auto;
+	position: fixed;
+	bottom: 1em;
+	top: 1em;
+	left: 50%;
+	margin-left: -43%;
+}
+
+.userList, .chatDisplay {
+	float: left;
+	border: 2px solid rgb(204,204,204);
+	height: 90%;
+	background: rgb(255,255,255);
+}
+
+.chatDisplay {
+	width: 60%;
+	border-right: none;
+}
+
+.userList {
+	width: 30%;
+	overflow-x:hidden;
+}
+
+.messageForm {
+	clear: both;
+	bottom: 0;
+	width: 60%;
+	margin: 1% auto;
+	padding-top: 1%;
+}
+
+.messageForm input[type='text'] {
+	font-size: 1em;
+	height: 2em;
+	width: 80%;
+}
+
+.messageForm button {
+	width: 15%;
+	line-height: 2em;
+	text-transform: uppercase;
+	font-size: 1em;
+	letter-spacing: 0.1em;
+	margin-left: 2%;
+}
+
+.messageForm button:hover {
+	cursor: pointer;
+}
+
+.chatMessage {
+	font-size: 1.1em;
+	margin-left: 2%;
+}
+
+.chatMessage span {
+	color: DarkGoldenRod;
+}
+
+.userList h1 {
+	font-size: 1.5em;
+	display: inline-block;
+	padding: 0.5em;
+}
+
+.userList ul {
+	list-style-type: none;
+	font-size: 1.1em;
+	margin: 0;
+}
+.userList ul li {
+	margin-bottom: 0.5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
