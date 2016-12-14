@@ -8,4 +8,6 @@ npm install
 npm run start
 ```
 
+Runs on localhost:3000
+
 
