@@ -153,8 +153,7 @@ class ChatContainer extends Component {
   handleKeyUp(event) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(this.timeoutFunction, 2000);
-    socket.emit("typing", {isTyping: true});
-  
+    socket.emit("typing", {isTyping: true}); 
   }
 
 	render() {
@@ -169,7 +168,7 @@ class ChatContainer extends Component {
           <div className="container">
   				  <ChatDisplay messages={this.state.messages} isTyping={this.state.isTyping} userTyping={this.state.userTyping} />
             <UserList users={this.state.users} />
-            <MessageForm handleKeyUp={this.handleKeyUp} timeoutFunction={this.timeoutFunction} timeout={this.timeout}/>
+            <MessageForm handleKeyUp={this.handleKeyUp}/>
           </div>
 
           :
