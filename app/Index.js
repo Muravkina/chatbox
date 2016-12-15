@@ -23,7 +23,7 @@ class ChatContainer extends Component {
     this.receiveMessage = this.receiveMessage.bind(this);
     this.userIsTyping = this.userIsTyping.bind(this);
     this.timeoutFunction = this.timeoutFunction.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   componentDidMount() {
@@ -128,6 +128,7 @@ class ChatContainer extends Component {
     //receive info from the server if user is typing at the moment
     if(data.isTyping) {
       //if he/she is typing setTimeout to send another request to the server in 2 sec to check if he/she is still typing
+      clearTimeout(this.timeout);
       this.timeout = setTimeout(this.timeoutFunction, 2000);
 
       //change the state to show who and if he/she is typing at the moment
@@ -135,7 +136,7 @@ class ChatContainer extends Component {
         isTyping: true,
         userTyping: data.user
       })
-    } else {
+    } else if (data.isTyping === false) {
       //if he/she is not typing set the state to false 
       this.setState({
         isTyping: false
@@ -145,14 +146,15 @@ class ChatContainer extends Component {
 
   //send  message to the server that the person is no longer typing
   timeoutFunction() {
-    socket.emit("typing", false)
+    socket.emit("typing", {isTyping: false})
   }
 
   // if a user hits a key, a message is sent to the backend and a timeout starts
-  handleKeyDown(event) {
-    socket.emit("typing", true);
+  handleKeyUp(event) {
     clearTimeout(this.timeout);
     this.timeout = setTimeout(this.timeoutFunction, 2000);
+    socket.emit("typing", {isTyping: true});
+  
   }
 
 	render() {
@@ -167,7 +169,7 @@ class ChatContainer extends Component {
           <div className="container">
   				  <ChatDisplay messages={this.state.messages} isTyping={this.state.isTyping} userTyping={this.state.userTyping} />
             <UserList users={this.state.users} />
-            <MessageForm handleKeyDown={this.handleKeyDown} timeoutFunction={this.timeoutFunction} timeout={this.timeout}/>
+            <MessageForm handleKeyUp={this.handleKeyUp} timeoutFunction={this.timeoutFunction} timeout={this.timeout}/>
           </div>
 
           :
@@ -210,7 +212,7 @@ class MessageForm extends Component {
   render(){
     return(
       <div className='messageForm'>
-            <input type='text' value={this.state.input} onChange={this.handleChange} onKeyDown={this.props.handleKeyDown}/>
+            <input type='text' value={this.state.input} onChange={this.handleChange} onKeyUp={this.props.handleKeyUp}/>
             <button disabled={!this.state.input} onClick={this.handleSubmit}>Send</button>
       </div>
     )
@@ -292,7 +294,7 @@ const ChatDisplay = function(props) {
         })
       // Display the message to other users if anyone is typing at the moment
       }
-      <span>{ props.isTyping ? `${props.userTyping} is typing ` : null} </span>
+      <span className="isTyping">{ props.isTyping ? `${props.userTyping} is typing ` : null} </span>
     </div>
 	)
 }

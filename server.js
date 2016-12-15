@@ -39,7 +39,7 @@ io.on('connection', function(socket){
   //when someone is typing
   socket.on('typing', function(data){
     //send to everyone else but the sender his/her name and boolean if he/her is typing or not
-    socket.broadcast.emit("isTyping", {isTyping: data, user: users[socket.id]});
+    socket.broadcast.emit("isTyping", {isTyping: data.isTyping, user: users[socket.id]});
   })
   //when the user is leaving the chatroom, delete him form the user object and send his id to the client
   socket.on('disconnect', function() {
